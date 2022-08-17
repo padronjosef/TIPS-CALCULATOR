@@ -14,8 +14,11 @@ export const ListItem = ({ item = {}, index, deleteFood, editFood }) => {
   }
 
   const toggleEdit = () => {
+    const valuesToCheck = Object.values(itemValues)
+    const formNotComplete = valuesToCheck.some(item => !item)
+
     if (!isDisabled) {
-      editFood(itemValues, index)
+      !formNotComplete && editFood(itemValues, index)
     }
 
     setIsDisabled(!isDisabled)
